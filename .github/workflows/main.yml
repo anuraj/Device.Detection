@@ -28,8 +28,8 @@ jobs:
         run: dotnet build --configuration Release
 
       - name: Build the NuGet package
-        run: dotnet pack --configuration Release --output ${{env.DOTNET_ROOT}}/Package
+        run: dotnet pack --configuration Release --output ${{env.DOTNET_ROOT}}\Package
 
       - name: Publish NuGet Package
-        run: dotnet nuget push --source ${{env.DOTNET_ROOT}}/Package/*.nupkg --api-key ${{ secrets.NUGET_KEY }}
+        run: dotnet nuget push ${{env.DOTNET_ROOT}}\Package\*.nupkg --api-key ${{ secrets.NUGET_KEY }} --source https://api.nuget.org/v3/index.json
         
